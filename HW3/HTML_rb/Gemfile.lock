@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    fillson22_make_html (0.2.0)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  fillson22_make_html
+
+BUNDLED WITH
+   2.3.5
