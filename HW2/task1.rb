@@ -2,7 +2,7 @@ array=[621, 445, 147, 159, 430, 222, 482, 44, 194, 522, 652, 494,
     14, 126, 532, 387, 441, 471, 337, 446, 18, 36, 202, 574, 556, 458, 16, 139, 
     222, 220, 107, 82, 264, 366, 501, 319, 314, 430, 55, 336]
 
-    p '- дізнатись кількість елементів в масиві:'
+    puts "- дізнатись кількість елементів в масиві:\n"
     p array.size
 
     p '– перевернути масив:'
@@ -15,32 +15,32 @@ array=[621, 445, 147, 159, 430, 222, 482, 44, 194, 522, 652, 494,
     p array.min
 
     p '– відсортувати від меншого до більшого:'
-    p array.sort{|i,j| i<=>j}
+    p array.sort { |elem1, elem2| elem1 <=> elem2 }
 
     p '– відсортувати від більшого до меншого:'
-    p array.sort{|i,j| j<=>i}
+    p array.sort { |elem1, elem2| elem2 <=> elem1 }
 
     p '– видалити всі непарні числа:'
-    p array.delete_if{|i| i.odd?}
+    p array.delete_if {|elem| elem.odd? }
 
     p '– залишити тільки ті числа, які без остачі ділятся на 3:'
-    p array.select{|i| (i%3).zero?}
+    p array.select { |elem| ( elem % 3 ).zero? }
 
     p '– видалити з масиву числа, які повторюються (тобто, потрібно вивести масив, в якому немає повторень):'
     p array.uniq
 
     p '- розділити кожен елемент на 10, в результаті елементи не мають бути округленими до цілого:'
-    p array.map{|i| i.to_f/10}
+    p array.map {|elem| elem.to_f / 10 }
 
     p '– отримати новий масив, який би містив в собі ті літери англійського алфавіту, порядковий номер яких є в нашому масиві:'
-    p array.select { |i| i >= 65 && i<=122 }.map{|i| i.chr}
+    p array.select { |elem| elem >= 65 && elem <= 122 }.map{ |elem| elem.chr }
 
     p '- змінити місцями мінімальний і максимальний елементи масиву:'
-    array[array.index(array.min)], array[array.index(array.max)] = array[array.index(array.max)], array[array.index(array.min)] 
+    array [array.index(array.min)], array [array.index(array.max)] = array [array.index(array.max)], array [array.index(array.min)] 
     p array
 
     p '– знайти елементи, які знаходяться перед мінімальним числом в масиві:'
-    p array[0..(array.index(array.min)-1)]
+    p array [0..(array.index(array.min) - 1)]
 
     p '– необхідно знайти три найменших елементи:'
     p array.min(3)

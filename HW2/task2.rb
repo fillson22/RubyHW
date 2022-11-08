@@ -230,35 +230,35 @@ sleep 1
 command = nil
 puts "Вы можете ввести h что бы увидеть список команд"
 until command == 'exit' do
-    command = gets.chomp
-    case command
-        when "h"
-            aaa.do_with_me
-        when "0"  
-            aaa.super_fly
-        when "1"  
-            aaa.eat
-        when "2"
-            aaa.put_to_sleep
-        when "3"
-            aaa.bathe 
-        when "4"
-            aaa.treat
-        when "5"  
-            aaa.observe
-        when "6"  
-            aaa.stick
-        when "7"  
-            aaa.train
-        when "8"  
-            aaa.competition
-        when "9"  
-            aaa.iron
-        when "10"  
-            aaa.kids
-        when "11"  
-            aaa.elixir
-        when "12" 
-            command = 'exit'
-    end
+ command = gets.chomp
+  case command
+  when "h" 
+    aaa.do_with_me
+  when "0"  
+    aaa.super_fly
+  when "1"  
+    aaa.eat
+  when "2"
+    aaa.put_to_sleep
+  when "3"
+    aaa.bathe 
+  when "4"
+    aaa.treat
+  when "5"  
+    aaa.observe
+  when "6"  
+    aaa.stick
+  when "7"  
+    aaa.train
+  when "8"  
+    aaa.competition
+  when "9"  
+    aaa.iron
+  when "10"  
+    aaa.kids
+  when "11"  
+    aaa.elixir
+  when "12" 
+    command = 'exit'
+  end
 end
