@@ -1,3 +1,4 @@
 source 'https://rubygems.org'
 
 gem 'fillson22_make_html'
+gem 'sanitize'
