@@ -1,56 +1,53 @@
 class Api::V1::ArticlesController < ApplicationController
+  before_action :set_article
 
-  def create #Создание статьи
-    article = Article.new(article_params)
-
-    if article.save #Проверяем успех операции и рендерим ответ в формате json
-      render json: { status: "Create", data: article}, status: :ok
+  def create
+    @article = Article.new(article_params)
+    if @article.save 
+      render json: { status: "Create", data: @article }
     else
-      render json: article.errors, status: :unprocessable_entity
+      render json: @article.errors
     end
   end
 
-  def update #Обновление(изменение) данных в статье
-    article = Article.find(params[:id]) #находим нужную статью по айдишнику
-
-    if article.update!(article_params) #изменяем параметры и рендерим ответ
-      render json: { status: "Update", data: article}, status: :ok
+  def update
+    if @article.update(article_params)
+      render json: { status: "Update", data: @article }
     else
-      render json: article.errors, status: :unprocessable_entity
+      render json: @article.errors
     end
   end
 
-  def destroy #Удаление статьи
-    article = Article.find(params[:id]) #находим нужную статью по айдишнику
-
-    if article.destroy! #удаляем статью и рендерим ответ
-      render json: { status: "Delete"}, status: :ok
+  def destroy 
+    if @article.destroy
+      render json: { status: "Delete" }
     else
-      render json: article.errors, status: :unprocessable_entity
+      render json: @article.errors
     end
   end
 
-  def index #Выводим все существующие статьи
-    articles = Article.all
-
-    if articles #проверяем успех и рендерим ответ
-      render json: { status: 'OK', data: articles}
+  def index 
+    @articles = Article.all
+    if @articles 
+      render json: @articles
     else
-      render json: articles.errors, status: :bad_request
+      render json: @articles.errors
     end
   end
 
-  def show #Находим и выводим нужную нам статью
-    article = Article.find(params[:id]) #Находим по айдишнику статью
-  
-    if article #проверяем успех и рендерим ответ
-      render json: {data: article}, state: :ok
+  def show 
+    if @article 
+      render json: @article
     else
-      render json: { message: "Not found" }, status: :bad_request
+      render json: { message: "Not found" }
     end
   end
      
   private
+
+  def set_article
+    @article = Article.find_by_id(params[:id])
+  end
 
   def article_params
     params.require(:article).permit(:title, :body)
