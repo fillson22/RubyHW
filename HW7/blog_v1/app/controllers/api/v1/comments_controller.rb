@@ -14,7 +14,6 @@ class Api::V1::CommentsController < ApplicationController
 
   def index #GET /api/v1/articles/:article_id/comments
     @comment = @article.comments.all
-
     if @comment.statuses.keys.include?(params[:status])
       render json: { article: @article, comment: @comment.with_status(params[:status]) }
     else
@@ -46,19 +45,19 @@ class Api::V1::CommentsController < ApplicationController
     end  
   end
 
-    private
+  private
 
-    def set_article
-      @article = Article.find_by_id(params[:article_id])
-    end
+  def set_article
+    @article = Article.find_by_id(params[:article_id])
+  end
   
-    def set_author
-      @author = Author.find_by_id(params[:author_id])
-    end
+  def set_author
+    @author = Author.find_by_id(params[:author_id])
+  end
   
-    def set_comment
-      @comment = @article.comments.find(params[:id])
-    end
+  def set_comment
+    @comment = @article.comments.find(params[:id])
+  end
 
   def comment_params
     params.require(:comment).permit(:body, :status, :author_id)

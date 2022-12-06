@@ -36,7 +36,6 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def show #GET /api/v1/articles/:id
-
     if @article
       render json: { article: @article, 
                      tag: @article.tags, 
