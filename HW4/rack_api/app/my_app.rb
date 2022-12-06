@@ -21,10 +21,12 @@ class MyApp
       @pet = Animal.new(name)
       rack_response_redirect('/game')
     when '/game'
-      return rack_response_redirect if pet.nil?
+      return_response
+      #return rack_response_redirect if pet.nil?
       rack_response('game.html.erb')
     when '/food'
-      return rack_response_redirect if pet.nil?
+      return_response
+      #return rack_response_redirect if pet.nil?
       if pet.stop_game?
         rack_response_redirect('/game_over')
       else
@@ -32,7 +34,8 @@ class MyApp
         rack_response('game.html.erb')
       end
     when '/water'
-      return rack_response_redirect if pet.nil?
+      return_response
+      #return rack_response_redirect if pet.nil?
       if pet.stop_game?
         rack_response_redirect('/game_over')
       else
@@ -40,7 +43,8 @@ class MyApp
         rack_response('game.html.erb')
       end
     when '/sleep'
-      return rack_response_redirect if pet.nil?
+      return_response
+      #return rack_response_redirect if pet.nil?
       if pet.stop_game?
         rack_response_redirect('/game_over')
       else
@@ -48,7 +52,8 @@ class MyApp
         rack_response('game.html.erb')
       end      
     when '/walk'
-      return rack_response_redirect if pet.nil?
+      return_response
+      #return rack_response_redirect if pet.nil?
       if pet.stop_game?
         rack_response_redirect('/game_over')
       else
@@ -56,7 +61,8 @@ class MyApp
         rack_response('game.html.erb')
       end
     when '/train'
-      return rack_response_redirect if pet.nil?
+      return_response
+      #return rack_response_redirect if pet.nil?
       if pet.stop_game?
         rack_response_redirect('/game_over')
       else
@@ -83,5 +89,11 @@ class MyApp
     Rack::Response.new do |response|
       response.redirect(new_path)
     end
+  end
+
+  private
+
+  def return_response
+    return rack_response_redirect if pet.nil?
   end
 end
