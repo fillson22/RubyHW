@@ -6,4 +6,5 @@ class Article < ApplicationRecord
 
   validates :title, :body, presence: true 
   validates :body, length: { in: 5..50 }
+
 end

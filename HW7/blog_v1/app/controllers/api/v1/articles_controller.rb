@@ -40,7 +40,7 @@ class Api::V1::ArticlesController < ApplicationController
     if @article
       render json: { article: @article, 
                      tag: @article.tags, 
-                     comment: @article.comments, 
+                     comment: @article.comments.recently_create.limit(10), 
                      like: @article.likes }
     else
       render json: @article.errors 
