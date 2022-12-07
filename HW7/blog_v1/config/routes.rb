@@ -8,7 +8,7 @@ Rails.application.routes.draw do
           resources :likes
         end
       end
-      resources :tags, only: [:show, :index]
+      resources :tags
     end
   end
 
