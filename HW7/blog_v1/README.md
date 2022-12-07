@@ -74,6 +74,4 @@ Unlike the comment:
 DELETE http://127.0.0.1:3000/api/v1/articles/:article_id/comments/:comments_id/likes/:id
 =================
 
-&copy; @filippov&@
-
-=================
+&copy; @IFilippov 1983-2022
