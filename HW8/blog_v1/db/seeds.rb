@@ -1,16 +1,9 @@
-require "faker"
-
-5.times do
-  Author.create(
-    name: Faker::Name.name,
-  )
-end
-
 10.times do
-  title = Faker::Hipster.word
-  Tag.create title: title
+  Author.create(name: Faker::Name.name)
+  Tag.create title: Faker::Hipster.word
 end
 
-  Article.create(title: 'First article', body: 'Text for article')
-  Article.create(title: 'Second article', body: 'Text for article')
-  Article.create(title: 'Third article', body: 'Text for article')
+author = Author.all
+10.times do
+  Article.create(title: Faker::Game.title, body: Faker::Game.genre, author_id: author.sample.id)
+end

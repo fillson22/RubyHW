@@ -9,7 +9,6 @@ Rails.application.routes.draw do
         end
       end
       resources :tags
-      get 'search', to: 'articles#search'
     end
   end
 

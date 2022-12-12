@@ -7,12 +7,10 @@ class Article < ApplicationRecord
   validates :title, :body, presence: true 
   validates :body, length: { in: 5..50 }
 
-  def self.search(search)
-    if search
-      find(:all, conditions: ['name LIKE ?', "%#{search}%"])
-    else
-      find(:all)
-    end
-  end
+  enum status: { unpublished: 0, published: 1 }
+
+  scope :with_status, ->(status_type) { where(status: status_type) }
+  scope :with_author, ->(author_name) { where(author_id: author_name) }
+  scope :with_tag, ->(tag_name) { where(tag_id: tag_name) }
 
 end

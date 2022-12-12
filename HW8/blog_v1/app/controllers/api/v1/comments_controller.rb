@@ -9,20 +9,17 @@ class Api::V1::CommentsController < ApplicationController
     from_status = params[:status]
     @comment = @comment.with_status(from_status) if from_status
 
-    from_author = params[:author_id]
-    @comment = @comment.with_author(params[:author_id]) if from_author
+    author_id = Author.find_by(name: params[:author])
+    @comment = @comment.with_author(author_id.id) if author_id
+
+    from_text_on_body = params[:search]
+    @comment = @comment.where('body ILIKE ?', "%#{from_text_on_body}%") if from_text_on_body
 
     if @comment.blank?
       render json: { message: "Not found" }
     else
       render json: { comment: @comment }
     end
-    
-    # if @comment.statuses.keys.include?(params[:status])
-    #   render json: { article: @article, comment: @comment.with_status(params[:status]) }
-    # else
-    #   render json: { article: @article, comment: @comment }
-    # end
   end
   
   def create #POST /api/v1/articles/:article_id/comments

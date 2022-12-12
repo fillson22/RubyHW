@@ -13,6 +13,6 @@ class Comment < ApplicationRecord
   enum status: { unpublished: 0, published: 1 }
 
   scope :with_status, ->(status_type) { where(status: status_type) }
-  scope :with_author, ->(author_id) { where(author_id: author_id) }
+  scope :with_author, ->(author_name) { where(author_id: author_name) }
  
 end
