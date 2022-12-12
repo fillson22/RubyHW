@@ -13,12 +13,13 @@ class Api::V1::ArticlesController < ApplicationController
     # GET http://127.0.0.1:3000/api/v1/articles?search=somebodytext
     from_title_or_body = params[:search]
     @article = @article.where('title || body ILIKE ?', "%#{from_title_or_body}%") if from_title_or_body
-    #GET http://127.0.0.1:3000/api/v1/articles?order=desc
+    # GET http://127.0.0.1:3000/api/v1/articles?order=desc
     order = params[:order]
     @article = Article.all.order(title: order) if order
     
-    #tag = Tag.find_by(title: params[:tag])
-    #@article = Article.article_tags(:tag_id) if tag
+    tag = Tag.find_by(title: params[:tag])
+
+    @article = Article_tags.where(tag_id: tag.id) if tag
 
     if @article.blank?
       render json: { message: "Not found" }
@@ -76,6 +77,6 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, tag_ids: [])
+    params.require(:article).permit(:title, :body, :author_id, :status, tag_ids: [])
   end
 end
