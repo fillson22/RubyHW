@@ -23,7 +23,7 @@ class Api::V1::ArticlesController < ApplicationController
     if @article.blank?
       render json: { message: "Not found" }
     else
-      render json: { article: @article }
+      render json: @article, each_serializer: ArticleSerializer
     end
   end
 
@@ -63,10 +63,7 @@ class Api::V1::ArticlesController < ApplicationController
 
   def show #GET /api/v1/articles/:id
     if @article
-      render json: { article: @article, 
-                     tag: @article.tags, 
-                     comment: @article.comments.recently_create.limit(10), 
-                     like: @article.likes }
+      render json: @article
     else
       render json: @article.errors 
     end
