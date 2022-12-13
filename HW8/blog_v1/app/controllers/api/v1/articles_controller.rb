@@ -16,10 +16,9 @@ class Api::V1::ArticlesController < ApplicationController
     # GET http://127.0.0.1:3000/api/v1/articles?order=desc
     order = params[:order]
     @article = Article.all.order(title: order) if order
-    
-    tag = Tag.find_by(title: params[:tag])
-
-    @article = Article_tags.where(tag_id: tag.id) if tag
+    # GET http://127.0.0.1:3000/api/v1/articles?tag=loko
+    tags = params[:tags]#Tag.find_by(title: params[:tag])
+    @article = @article.new_filter(tags) if tags
 
     if @article.blank?
       render json: { message: "Not found" }
