@@ -23,7 +23,7 @@ class Api::V1::ArticlesController < ApplicationController
     if @article.blank?
       render json: { message: "Not found" }
     else
-      render json: @article#, each_serializer: ArticleSerializer
+      render json: @article
     end
   end
 

@@ -11,7 +11,6 @@ class Article < ApplicationRecord
 
   scope :with_status, ->(status_type) { where(status: status_type) }
   scope :with_author, ->(author_name) { where(author_id: author_name) }
-  #scope :with_tag, ->(tag_name) { where(tag_id: tag_name) }
 
   def self.new_filter(tags)
     Article.joins(:tags).where('tags.title IN (?)', tags)
