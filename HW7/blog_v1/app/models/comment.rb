@@ -1,10 +1,9 @@
 class Comment < ApplicationRecord
-
   include OrderableByTimestamp
 
   belongs_to :author
   belongs_to :article
-  
+
   has_many :likes, as: :likeable
 
   validates :author, :article, presence: true
