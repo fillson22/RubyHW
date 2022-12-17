@@ -14,7 +14,7 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def index #GET /api/v1/articles/:article_id/comments
-    @comment = @article.comments.all
+    @comment = @article.comments
 
     if @comment
       render json: @comment#.where(status: [:published])
@@ -50,7 +50,7 @@ class Api::V1::CommentsController < ApplicationController
     private
 
   def set_article
-    @article = Article.find_by_id(params[:article_id])
+    @article = Article.find_by(id: params[:article_id])
   end
 
   def set_author
@@ -64,5 +64,4 @@ class Api::V1::CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:body, :author_id)
   end
-
 end
