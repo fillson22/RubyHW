@@ -1,6 +1,6 @@
 class CommentSerializer < ActiveModel::Serializer
   attributes :id, :body, :status, :created_at, :author
-  
+
   belongs_to :article
 
   def author

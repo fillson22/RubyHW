@@ -4,7 +4,7 @@ class Article < ApplicationRecord
   has_many :tags, through: :article_tags
   has_many :comments, dependent: :destroy
 
-  validates :title, :body, presence: true 
+  validates :title, :body, presence: true
   validates :body, length: { in: 5..50 }
 
   enum status: { unpublished: 0, published: 1 }
@@ -14,6 +14,5 @@ class Article < ApplicationRecord
 
   def self.new_filter(tags)
     Article.joins(:tags).where('tags.title IN (?)', tags)
-   end
-
+  end
 end
