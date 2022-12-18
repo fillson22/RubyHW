@@ -4,42 +4,42 @@ class Api::V1::AuthorsController < ApplicationController
   def create # POST /api/v1/authors
     @author = Author.new(author_params)
     if @author.save
-      render json: { status: 'Create new author', data: @author }
+      render json: { status: 'Create new author', data: @author }, status: :created
     else
-      render json: @author.errors
+      render json: @author.errors, status: :unprocessable_entity
     end
   end
 
   def index # GET /api/v1/authors
     @author = Author.all
     if @author
-      render json: @author
+      render json: @author, status: :ok
     else
-      render json: @author.errors
+      render json: @author.errors, status: :unprocessable_entity
     end
   end
 
   def show # GEt /api/v1/authors/:id
     if @author
-      render json: { author: @author, comment: @author.comments }
+      render json: { author: @author, comment: @author.comments }, status: :ok
     else
-      render json: { message: 'Not found' }
+      render json: { message: 'Not found' }, status: :unprocessable_entity
     end
   end
 
   def update # PATCH /api/v1/authors/:id
     if @author.update(author_params)
-      render json: { status: 'Update', data: @author }
+      render json: { status: 'Update', data: @author }, status: :ok
     else
-      render json: @author.errors
+      render json: @author.errors, status: :unprocessable_entity
     end
   end
 
   def destroy # DELETE /api/v1/authors/:id
     if @author.destroy
-      render json: { status: 'Delete' }
+      render json: { status: 'Delete' }, status: :ok
     else
-      render json: @author.errors
+      render json: @author.errors, status: :unprocessable_entity
     end
   end
 

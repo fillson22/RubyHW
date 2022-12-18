@@ -4,14 +4,14 @@ class Api::V1::TagsController < ApplicationController
   def create
     @tag = Tag.create(tag_params)
     if @tag.save
-      render json: { message: 'Tag create', tag: @tag }
+      render json: { message: 'Tag created', tag: @tag }, status: :created
     else
-      render json: @tag.errors.full_messages
+      render json: @tag.errors.full_messages, status: :unprocessable_entity
     end
   end
 
   def index
-    render json: { tag: Tag.all }
+    render json: { tag: Tag.all }, status: :ok
   end
 
   def show

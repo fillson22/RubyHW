@@ -21,34 +21,34 @@ class Api::V1::ArticlesController < ApplicationController
     @article = @article.new_filter(tags) if tags
 
     if @article.blank?
-      render json: { message: 'Not found' }
+      render json: { message: 'Not found' }, status: :unprocessable_entity
     else
-      render json: @article
+      render json: @article, status: :ok
     end
   end
 
   def create # POST /api/v1/articles
     @article = Article.create(article_params)
     if @article.save
-      render json: { status: 'Create new article', data: @article }
+      render json: { status: 'Create new article', data: @article }, status: :created
     else
-      render json: @article.errors
+      render json: @article.errors, status: :unprocessable_entity
     end
   end
 
   def update # PATCH /api/v1/articles/:id
     if @article.update(article_params)
-      render json: { status: 'Update', data: @article }
+      render json: { status: 'Update', data: @article }, status: :ok
     else
-      render json: @article.errors
+      render json: @article.errors, status: :unprocessable_entity
     end
   end
 
   def destroy # DELETE /api/v1/articles/:id
     if @article.destroy
-      render json: { status: 'Delete' }
+      render json: { status: 'Delete' }, status: :ok
     else
-      render json: @article.errors
+      render json: @article.errors, status: :unprocessable_entity
     end
   end
 
@@ -57,15 +57,15 @@ class Api::V1::ArticlesController < ApplicationController
     if @article.blank?
       render json: { message: 'Not found article with your params' }
     else
-      render json: { article: @article }
+      render json: { article: @article }, status: :ok
     end
   end
 
   def show # GET /api/v1/articles/:id
     if @article
-      render json: @article
+      render json: @article, status: :ok
     else
-      render json: @article.errors
+      render json: @article.errors, status: :unprocessable_entity
     end
   end
 

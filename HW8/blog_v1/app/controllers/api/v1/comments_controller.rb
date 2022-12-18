@@ -16,42 +16,42 @@ class Api::V1::CommentsController < ApplicationController
     @comment = @comment.where('body ILIKE ?', "%#{from_text_on_body}%") if from_text_on_body
 
     if @comment.blank?
-      render json: { message: 'Not found' }
+      render json: { message: 'Not found' }, status: :unprocessable_entity
     else
-      render json: { comment: @comment }
+      render json: { comment: @comment }, status: :ok
     end
   end
 
   def create # POST /api/v1/articles/:article_id/comments
     @comment = @article.comments.new(comment_params)
     if @comment.save
-      render json: { status: 'Comment create!', data: @comment }
+      render json: { status: 'Comment created!', data: @comment }, status: :created
     else
-      render json: @comment.errors
+      render json: @comment.errors, status: :unprocessable_entity
     end
   end
 
   def update # PATCH /api/v1/articles/:article_id/comments/:id
     if @comment.update(comment_params)
-      render json: { status: 'Update', data: @comment }
+      render json: { status: 'Update', data: @comment }, status: :ok
     else
-      render json: @comment.errors
+      render json: @comment.errors, status: :unprocessable_entity
     end
   end
 
   def destroy # DELETE /api/v1/articles/:article_id/comments/:id
     if @comment.destroy
-      render json: { status: 'Delete' }
+      render json: { status: 'Delete' }, status: :ok
     else
-      render json: @comment.errors
+      render json: @comment.errors, status: :unprocessable_entity
     end
   end
 
   def show # GET /api/v1/articles/:article_id/comments/:id
     if @comment
-      render json: { comment: @comment, like: @comment.likes }
+      render json: { comment: @comment, like: @comment.likes }, status: :ok
     else
-      render json: { message: 'Not found' }
+      render json: { message: 'Not found' }, status: :unprocessable_entity
     end
   end
 
