@@ -6,6 +6,42 @@ info:
   version: v1
 paths:
   "/api/v1/articles":
+    get:
+      summary: list articles
+      tags:
+      - Articles
+      parameters:
+      - name: search
+        in: query
+        schema:
+          type: string
+        description: Find an article by title or content that contains text
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - unpublished
+          - published
+        description: 'Get articles with status: unpublished/published'
+      - name: tags
+        in: query
+        schema:
+          type: string
+        description: Filter articles by tags
+      - name: author
+        in: query
+        schema:
+          type: string
+        description: Get articles by name author
+      - name: order
+        in: query
+        schema:
+          type: string
+        description: Sort article by asc/desc
+      responses:
+        '200':
+          description: successful
     post:
       summary: create article
       tags:
@@ -40,6 +76,61 @@ paths:
         type: string
     get:
       summary: show article
+      tags:
+      - Articles
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update article
+      tags:
+      - Articles
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                body:
+                  type: string
+                status:
+                  type: string
+                  enum:
+                  - unpublished
+                  - published
+              required: false
+    put:
+      summary: update article
+      tags:
+      - Articles
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                body:
+                  type: string
+                status:
+                  type: string
+                  enum:
+                  - unpublished
+                  - published
+              required: false
+    delete:
+      summary: delete article
       tags:
       - Articles
       responses:
