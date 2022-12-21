@@ -17,13 +17,13 @@ class Api::V1::ArticlesController < ApplicationController
     order = params[:order]
     @article = Article.all.order(title: order) if order
     # GET http://127.0.0.1:3000/api/v1/articles?tag=loko
-    tags = params[:tags] # Tag.find_by(title: params[:tag])
+    tags = params[:tags]
     @article = @article.new_filter(tags) if tags
 
     if @article.blank?
       render json: { message: 'Not found' }, status: :unprocessable_entity
     else
-      render json: @article, status: :ok
+      render json: @article # , status: :ok
     end
   end
 

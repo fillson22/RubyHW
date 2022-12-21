@@ -18,7 +18,8 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'API V1',
+        title: 'HOME_WORK "HW89" ',
+        description: 'My first API-documentation experience',
         version: 'v1'
       },
       paths: {},
