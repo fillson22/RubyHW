@@ -1,0 +1,20 @@
+
+<div class="container-fluid" style="padding-left: 20px; padding-right: 20px; width: 908px;">
+  <div class="row">
+        <h1 class="text-center">All products</h1>
+  </div>
+  <div class="row" style="padding-left: 20px; padding-right: 20px; width: 650px;>
+    <div class="col d-flex flex-row bd-highlight mb-3">
+      <%@products.each do |product|%>
+        <div class="card" style="width: 7rem;">
+          <%= image_tag product.image, height: 100 %>
+          <div class="card-body p-1 bd-highlight">
+            <h5 class="card-title text-center"><%=link_to product.name, product%></h5>
+            <p class="card-text">Price: <%=number_to_currency(product.price)%></p>
+            <button type="button" class="btn btn-info">In card</button>
+          </div>
+        </div>
+      <%end%> 
+    </div>
+  </div> 
+</div>
