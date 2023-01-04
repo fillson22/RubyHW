@@ -1,7 +1,7 @@
 Start to work!
 
 git clone https://github.com/fillson22/RubyHW.git
-cd RubyHW/HW10
+cd RubyHW/HW11
 gem install bundler
 bundle install
 Change config/database_copy.yml on config/database.yml with your username and password
