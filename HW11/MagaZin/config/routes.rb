@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   get 'line_items/:id/add' => 'line_items#add_quantity', as: 'line_item_add'
   get 'line_items/:id/reduce' => 'line_items#reduce_quantity', as: 'line_item_reduce'
 
+  resources :orders
+
 end

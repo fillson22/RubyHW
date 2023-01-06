@@ -35,6 +35,9 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
               <li> <%= link_to "Home", root_path %> </li>
+              <%if current_user %> 
+                <li> <%= link_to "Your orders", orders_path %> </li>
+              <%end%>
         <hr>
             <h4> Category: </h4>
             <% Category.all.each do |category| %>
