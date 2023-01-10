@@ -3,6 +3,7 @@ class Article < ApplicationRecord
   has_many :article_tags, dependent: :destroy
   has_many :tags, through: :article_tags
   has_many :comments, dependent: :destroy
+  belongs_to :author
 
   validates :title, :body, presence: true
   validates :body, length: { in: 5..50 }

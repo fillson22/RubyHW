@@ -4,21 +4,12 @@ class Api::V1::CommentsController < ApplicationController
   before_action :set_comment, only: %i[show update destroy]
 
   def index # GET /api/v1/articles/:article_id/comments
-    @comment = @article.comments.all
-
-    from_status = params[:status]
-    @comment = @comment.with_status(from_status) if from_status
-
-    author_id = Author.find_by(name: params[:author])
-    @comment = @comment.with_author(author_id.id) if author_id
-
-    from_text_on_body = params[:search]
-    @comment = @comment.where('body ILIKE ?', "%#{from_text_on_body}%") if from_text_on_body
+    @comment = @article.comments
 
     if @comment.blank?
       render json: { message: 'Not found' }, status: :unprocessable_entity
     else
-      render json: { comment: @comment }, status: :ok
+      render json: @comment, status: :ok
     end
   end
 
@@ -49,7 +40,7 @@ class Api::V1::CommentsController < ApplicationController
 
   def show # GET /api/v1/articles/:article_id/comments/:id
     if @comment
-      render json: { comment: @comment, like: @comment.likes }, status: :ok
+      render json: @comment, status: :ok
     else
       render json: { message: 'Not found' }, status: :unprocessable_entity
     end

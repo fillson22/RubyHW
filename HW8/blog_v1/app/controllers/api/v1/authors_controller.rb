@@ -21,7 +21,7 @@ class Api::V1::AuthorsController < ApplicationController
 
   def show # GEt /api/v1/authors/:id
     if @author
-      render json: { author: @author, comment: @author.comments }, status: :ok
+      render json: @author, status: :ok
     else
       render json: { message: 'Not found' }, status: :unprocessable_entity
     end
