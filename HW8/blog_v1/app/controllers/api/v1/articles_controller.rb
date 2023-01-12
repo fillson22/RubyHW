@@ -2,28 +2,29 @@ class Api::V1::ArticlesController < ApplicationController
   before_action :set_article, only: %i[show update destroy]
 
   def index # GET /api/v1/articles
-    @pagy, @article = pagy(Article.all.order(created_at: :desc), items: 15)
-
+    @articles = Article.all
     # GET http://127.0.0.1:3000/api/v1/articles?status=unpublished
     from_status = params[:status]
-    @article = @article.with_status(from_status) if from_status
+    @articles = @articles.with_status(from_status) if from_status
     # GET http://127.0.0.1:3000/api/v1/articles?author=author.name
-    author = Author.find_by(name: params[:author])
-    @article = @article.with_author(author.id) if author
+    #author = Author.find_by(name: params[:author])
+    @articles = @articles.with_author(params[:author]) if params[:author]
     # GET http://127.0.0.1:3000/api/v1/articles?search=somebodytext
     from_title_or_body = params[:search]
-    @article = @article.where('title || body ILIKE ?', "%#{from_title_or_body}%") if from_title_or_body
+    @articles = @articles.articles_search(from_title_or_body) if from_title_or_body
     # GET http://127.0.0.1:3000/api/v1/articles?order=desc
     order = params[:order]
-    @article = Article.all.order(title: order) if order
+    @articles = @articles.order(title: order) if order
     # GET http://127.0.0.1:3000/api/v1/articles?tag=loko
-    tags = params[:tags] # Tag.find_by(title: params[:tag])
-    @article = @article.new_filter(tags) if tags
+    tags = params[:tags]
+    @articles = @articles.with_tags(tags) if tags
 
-    if @article.blank?
+    @pagy, @articles = pagy(@articles.order(created_at: :desc), items: 15)
+
+    if @articles.blank?
       render json: { message: 'Not found' }, status: :unprocessable_entity
     else
-      render json: @article, status: :ok
+      render json: @articles, status: :ok
     end
   end
 

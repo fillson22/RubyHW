@@ -5,7 +5,7 @@ class ArticleSerializer < ActiveModel::Serializer
   belongs_to :author
 
   class CommentSerializer < ActiveModel::Serializer
-    attributes :id, :author
+    attributes :id
   end
   class TagSerializer < ActiveModel::Serializer
     attributes :id, :title
