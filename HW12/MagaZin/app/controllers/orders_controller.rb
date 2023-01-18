@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[show destroy paid]
 
-  def show; end 
+  def show; end
 
   def index
     @orders = current_user.orders.includes([:cart]).order(created_at: :desc) if current_user

@@ -18,5 +18,4 @@ Rails.application.routes.draw do
 
   resources :orders
   get '/orders/:id/paid', to: 'orders#paid', as: 'order_paid'
-
 end

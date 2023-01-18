@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LineItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_line_item, only: %i[destroy update]
@@ -21,10 +23,10 @@ class LineItemsController < ApplicationController
   end
 
   def destroy
-      @line_item.destroy
-      redirect_back(fallback_location: current_cart)
+    @line_item.destroy
+    redirect_back(fallback_location: current_cart)
   end
-  
+
   private
 
   def set_line_item
@@ -33,5 +35,4 @@ class LineItemsController < ApplicationController
     logger.info e
     render json: { message: 'line_item id not found' }, status: :not_found
   end
-
 end
