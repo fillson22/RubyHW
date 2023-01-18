@@ -14,13 +14,8 @@ Rails.application.routes.draw do
 
   resources :products
   resources :categories
+  resources :line_items, only: %i[create update destroy]
 
-  post 'line_items' => 'line_items#create'
-  get 'line_items/:id' => 'line_items#destroy', as: 'line_item'
-  get 'line_items/:id/add' => 'line_items#add_quantity', as: 'line_item_add'
-  get 'line_items/:id/reduce' => 'line_items#reduce_quantity', as: 'line_item_reduce'
-
-  
   resources :orders
   get '/orders/:id/paid', to: 'orders#paid', as: 'order_paid'
 

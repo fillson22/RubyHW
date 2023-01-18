@@ -1,6 +1,9 @@
-<h4> <%=@product.name%> </h4>
-
-<table style="width:100%">
+<div class="container-fluid">
+  <div class="row">
+        <h1 class="text-center"><%=@product.name%></h1>
+  </div>
+  <div class="row">
+    <table style="width:100%">
   <tr>
     <td>Name</td>
     <td>Description</td>
@@ -16,3 +19,6 @@
     <td><%=@product.category.title%></td>
   </tr>
 </table>
+  </div> 
+</div>
+

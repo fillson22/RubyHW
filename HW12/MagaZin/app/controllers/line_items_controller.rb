@@ -1,5 +1,6 @@
 class LineItemsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_line_item, only: %i[destroy update]
 
   def create
     product = Product.find(params[:product_id])
@@ -13,30 +14,17 @@ class LineItemsController < ApplicationController
     redirect_to cart_path, notice: "#{product.name} was successfully added to the cart"
   end
 
-  def destroy
-    set_line_item
-    @line_item.destroy
-    redirect_back(fallback_location: current_cart)
-  end
-
-  def add_quantity
-    set_line_item
-    @line_item.quantity += 1
-    @line_item.save
+  def update
+    params[:act] == 'increase' ? @line_item.update(quantity: @line_item.quantity + 1) : @line_item.update(quantity: @line_item.quantity - 1)
+    @line_item.destroy if @line_item.quantity < 1
     redirect_to cart_path
   end
 
-  def reduce_quantity
-    set_line_item
-    if @line_item.quantity > 1
-      @line_item.quantity -= 1
-      @line_item.save
-      redirect_to cart_path
-    elsif @line_item.quantity == 1
-      destroy
-    end
+  def destroy
+      @line_item.destroy
+      redirect_back(fallback_location: current_cart)
   end
-
+  
   private
 
   def set_line_item

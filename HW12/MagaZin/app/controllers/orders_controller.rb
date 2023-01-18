@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   def show; end 
 
   def index
-    @orders = current_user.orders if current_user
+    @orders = current_user.orders.includes([:cart]).order(created_at: :desc) if current_user
   end
 
   def create
@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
   end
 
   def paid
-    @order.update(status: :paid)
+    @order.paid!
     redirect_to orders_path
   end
 

@@ -9,18 +9,18 @@
 class Cart < ApplicationRecord
 
   has_many :line_items, dependent: :nullify
-  has_one :order, dependent: :nullify
+  has_one :order
   
   def add_product(product)
     line_items.create(product: product, quantity: 1, price: product.price)
   end
 
   def total_price
-    sum = 0
+    @sum = 0
     line_items.each do |line_item|
-      sum += line_item.price * line_item.quantity
+      @sum += line_item.price * line_item.quantity
     end
-    sum
+    @sum
   end
 
 end

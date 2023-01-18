@@ -1,6 +1,11 @@
 <% if current_user %>
-  <h2>Your orders</h2>
-    <table class="table">
+  <div class="container-fluid">
+    <div class="row">
+          <h1 class="text-center">Your orders</h1>
+    </div>
+    <div class="row d-flex justify-content-around">
+      
+     <table class="table">
         <tr>
           <th>ID</th>
           <th>Data</th>
@@ -24,5 +29,9 @@
           </th>
         </tr>
       <%end%>  
-    </table>
+    </table> 
+      
+      
+    </div> 
+  </div>
 <%end%>
