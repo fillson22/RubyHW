@@ -20,9 +20,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Order < ApplicationRecord
-  belongs_to :cart
-  belongs_to :user
-  has_many :line_items
+  belongs_to :cart, optional: true
+  belongs_to :user, optional: true
+  has_many :line_items, dependent: :destroy
 
   enum status: { unpaid: 0, paid: 1 }
 end

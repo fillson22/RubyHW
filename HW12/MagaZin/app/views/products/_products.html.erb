@@ -1,12 +1,15 @@
-  <%@products.each do |product|%>
-    <div class="card" style="width: 7rem;">
-      <%= image_tag product.image, height: 100 %>
-      <div class="card-body p-1 bd-highlight">
-        <h5 class="card-title text-center"><%=link_to product.name, product%></h5>
-        <p class="card-text">Price: <%=number_to_currency(product.price)%></p>
-        <% if current_user %>
-              <%= button_to 'In cart', line_items_path(product_id: product.id), class: "btn btn-warning text-end" %>
-        <% end %>
+  
+    <%@products.each do |product|%>
+      <div class="card" style="height: 200px; width: 120px; padding: 10px">
+        <%= image_tag product.image%>
+        <div class="card-body p-1 bd-highlight">
+          <h5 class="card-title text-center"><%=link_to product.name, product%></h5>
+          <p class="card-text text-center">Price: <%=number_to_currency(product.price)%></p>
+          <% if current_user %>
+            <%= button_to 'In cart', line_items_path(product_id: product.id), class: "btn btn-warning" %>
+          <% end %>
+        </div>
       </div>
-    </div>
-  <%end%>  
+    <%end%>
+  
+   
