@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   def show; end
 
   def index
-    @orders = current_user.orders.includes([:cart]).order(created_at: :desc) if current_user
+    @orders = current_user.orders.order(created_at: :desc) if current_user
   end
 
   def create
