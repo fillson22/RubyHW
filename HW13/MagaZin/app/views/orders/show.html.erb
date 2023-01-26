@@ -11,7 +11,7 @@
             <th>Quantity</th>
             <th>Price</th>
           </tr>
-      <% @order.cart.line_items.includes([:product]).each do |line_item|%>
+      <% @view_order.each do |line_item|%>
           <tr>
             <th><%= image_tag line_item.product.image.variant(:norm)%></th>
             <th><%= line_item.product.name%></th>

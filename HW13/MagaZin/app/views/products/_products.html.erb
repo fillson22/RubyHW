@@ -1,4 +1,4 @@
-    <%@products.each do |product|%>
+    <%@products.with_attached_image.each do |product|%>
       <div class="card" style="width: 10rem; padding: 1rem">
         <% if product.image.attached? %>
         <%= image_tag product.image.variant(:norm)%>

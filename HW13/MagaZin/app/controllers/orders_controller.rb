@@ -3,7 +3,9 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[show destroy paid]
 
-  def show; end
+  def show
+    @view_order = @order.cart.line_items.includes(product: { image_attachment: :blob })
+  end
 
   def index
     @orders = current_user.orders.order(created_at: :desc) if current_user

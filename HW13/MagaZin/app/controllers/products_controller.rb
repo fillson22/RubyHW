@@ -2,10 +2,10 @@
 
 class ProductsController < ApplicationController
   def index
-    @products = Product.all.with_attached_image
+    @products = Product.all
   end
 
   def show
-    @product = Product.with_attached_image.find(params[:id])
+    @product = Product.find(params[:id])
   end
 end
