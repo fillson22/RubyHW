@@ -4,10 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to MagaZin.com, dear <%= @user.email %></h1>
-    <p>
-      Your order <%= @order.id %> has been successfully paid.<br>
-    </p>
+    
+    <%= render partial: 'email' %>
+
     <p>Thank you for visiting our store!</p>
+    
   </body>
 </html>
