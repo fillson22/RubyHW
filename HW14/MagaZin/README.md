@@ -4,7 +4,7 @@ Item selected from my favorite game World of Warcraft.
 Start to work!
 
 git clone https://github.com/fillson22/RubyHW.git
-cd RubyHW/HW11
+cd RubyHW/HW14
 
 Change config/database_copy.yml on config/database.yml with your params(username and password)
 
@@ -21,6 +21,8 @@ rails db:seed
 rails s
 
 On browser:
+
+All images in folder /assets
 
 User mode:
 

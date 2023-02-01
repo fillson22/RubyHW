@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
     @order.paid!
     user = current_user
     order = @order
-    UserMailer.thanks_for_order(user, order).deliver_now
+    UserMailer.thanks_for_order(user, order).deliver_later
     redirect_to orders_path
   end
 
