@@ -12,7 +12,7 @@
             </tr>
         <% @order.cart.line_items.each do |line_item|%>
             <tr>
-              <th><%= image_tag line_item.product.image.variant(:norm)  if line_item.product.image.attached?%></th>
+              <th><%= image_tag line_item.product.image.variant(:norm) if line_item.product.image.attached?%></th>
               <th><%= line_item.product.name%></th>
               <th><%= line_item.quantity%></th>
               <th><%= number_to_currency(line_item.product.price)%></th>
