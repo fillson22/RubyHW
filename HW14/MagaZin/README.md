@@ -20,9 +20,10 @@ rails db:migrate
 rails db:seed
 rails s
 
-On browser:
+If you want attached images to products then
+in admin mode seach images: /HW13/MagaZin/app/assets/images
 
-All images in folder /assets
+On browser:
 
 User mode:
 
