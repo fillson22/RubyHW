@@ -4,7 +4,7 @@ Item selected from my favorite game World of Warcraft.
 Start to work!
 
 git clone https://github.com/fillson22/RubyHW.git
-cd RubyHW/HW11
+cd RubyHW/HW13
 
 Change config/database_copy.yml on config/database.yml with your params(username and password)
 
@@ -19,6 +19,9 @@ rails db:create
 rails db:migrate
 rails db:seed
 rails s
+
+If you want attached images to products then
+in admin mode seach images: /HW13/MagaZin/app/assets/images
 
 On browser:
 
