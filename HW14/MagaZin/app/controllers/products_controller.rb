@@ -3,7 +3,7 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
-    SaleWorker.perform_async # in(Date.today.end_of_month.to_s)
+    #SaleWorker.perform_async
   end
 
   def show
