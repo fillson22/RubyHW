@@ -14,5 +14,5 @@
     sale_worker:
       # every: '15d' 
       # at: 'Date.today.end_of_month.to_s'
-      cron: '0 0 1 * *'   
+      cron: '0 * * * * *'   
       # class: SaleWorker

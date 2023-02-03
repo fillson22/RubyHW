@@ -4,6 +4,6 @@ class SaleWorker
   include Sidekiq::Worker
 
   def perform
-    LuckyWinnerService.new().call
+    LuckyWinnerService.call
   end
 end

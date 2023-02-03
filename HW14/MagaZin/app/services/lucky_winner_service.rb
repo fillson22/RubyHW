@@ -1,8 +1,9 @@
 class LuckyWinnerService
 
-  def call
+  def self.call
     orders_month = Order.where("created_at >= ?", 1.week.ago.utc)
     orders_paid = orders_month.where(:status => 'paid')
+    u_user = []
     orders_paid.each do |order|
       u_user << order.user
     end
