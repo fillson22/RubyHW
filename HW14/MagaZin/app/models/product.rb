@@ -21,12 +21,10 @@
 #  fk_rails_...  (category_id => categories.id)
 #
 class Product < ApplicationRecord
-  
   belongs_to :category
   has_many :line_items, dependent: :destroy
   has_one_attached :image, dependent: :destroy do |attachable|
     attachable.variant :small, resize_to_limit: [50, 50]
     attachable.variant :norm, resize_to_limit: [100, 100]
   end
-  
 end

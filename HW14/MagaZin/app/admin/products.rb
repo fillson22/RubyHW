@@ -6,13 +6,12 @@ ActiveAdmin.register Product do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  
-  
+
   permit_params :name, :description, :price, :image, :category_id
-  
+
   includes([:category])
   includes({ image_attachment: :blob })
-  
+
   form do |f|
     f.inputs do
       f.input :category
@@ -23,7 +22,7 @@ ActiveAdmin.register Product do
     end
     f.actions
   end
-  
+
   #
   # or
   #

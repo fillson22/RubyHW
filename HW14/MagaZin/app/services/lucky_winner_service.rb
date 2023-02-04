@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LuckyWinnerService
   attr_reader :lottery_winners
 
@@ -6,8 +8,8 @@ class LuckyWinnerService
   end
 
   def call
-    orders_month = Order.where("created_at >= ?", 1.week.ago.utc)
-    orders_paid = orders_month.where(:status => 'paid')
+    orders_month = Order.where('created_at >= ?', 1.week.ago.utc)
+    orders_paid = orders_month.where(status: 'paid')
     u_user = []
     orders_paid.each do |order|
       u_user << order.user
@@ -17,5 +19,4 @@ class LuckyWinnerService
       SaleMailer.lucky_user(user).deliver_later
     end
   end
-
 end

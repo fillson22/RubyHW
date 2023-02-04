@@ -1,14 +1,14 @@
 # frozen_string_literal: true
+
 require 'sidekiq/web'
 require 'sidekiq-scheduler/web'
 Rails.application.routes.draw do
-
   authenticate :admin_user do
     mount Sidekiq::Web, at: '/sidekiq'
   end
-  
+
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
-  
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
