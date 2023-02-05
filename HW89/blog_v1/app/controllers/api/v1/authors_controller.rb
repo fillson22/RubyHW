@@ -13,7 +13,7 @@ class Api::V1::AuthorsController < ApplicationController
   def index # GET /api/v1/authors
     @author = Author.all
     if @author
-      render json: @author, status: :ok
+      render json: { message: 'List of authors', authors: @author }, status: :ok
     else
       render json: @author.errors, status: :unprocessable_entity
     end

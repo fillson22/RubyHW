@@ -20,10 +20,10 @@ class Api::V1::ArticlesController < ApplicationController
     tags = params[:tags]
     @article = @article.new_filter(tags) if tags
 
-    if @article.blank?
-      render json: { message: 'Not found' }, status: :unprocessable_entity
+    if @article
+      render json: { message: 'All articles', articles: @article }, status: :ok
     else
-      render json: @article # , status: :ok
+      render json: { message: 'Not found' }, status: :unprocessable_entity
     end
   end
 
