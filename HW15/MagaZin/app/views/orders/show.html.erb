@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="row">
+        <h1 class="text-center">Your order #<%=@order.id%></h1>
+  </div>
+  <div class="row d-flex justify-content-around">
+
+    <table class="table">
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+      <% @view_order.each do |line_item|%>
+          <tr>
+            <th><%= image_tag line_item.product.image.variant(:norm)%></th>
+            <th><%= line_item.product.name%></th>
+            <th><%= line_item.quantity%></th>
+            <th><%= number_to_currency(line_item.product.price)%></th>
+          </tr>
+      <%end%>
+          <tr>
+            <th></th>
+            <th> Total price order:  </th>
+            <th></th>
+            <th><%= number_to_currency(@order.cart.total_price) %></th>
+          </tr>
+    </table>
+
+    <%= button_to 'Pay', order_paid_path(id: @order.id), method: :get%>
+    <%= button_to 'Delete', order_path(:id => @order), method: :delete%>
+
+  </div> 
+</div>
+

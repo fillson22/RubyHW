@@ -1,0 +1,37 @@
+<% if current_user %>
+  <div class="container-fluid">
+    <div class="row">
+          <h1 class="text-center">Your orders</h1>
+    </div>
+    <div class="row d-flex justify-content-around">
+      
+     <table class="table">
+        <tr>
+          <th>ID</th>
+          <th>Data</th>
+          
+          <th>Status</th>
+          <th></th>
+          <th></th>
+        </tr>
+      <% @orders.each do |order|%>
+        <tr>
+          <th><%= order.id %></th>
+          <th><%= order.created_at %></th>
+          
+          <th><%= order.status %></th>
+          <th><%= link_to 'View order', order_path(order) %></th>
+          <th><%= link_to 'Pay', order_paid_path(id: order.id)%> </th>
+          <th><%= button_to order_path(id: order.id), method: :delete do%> 
+                  Delete
+              <%end%>
+          </th>
+          </th>
+        </tr>
+      <%end%>  
+    </table> 
+      
+      
+    </div> 
+  </div>
+<%end%>

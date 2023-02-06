@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MagaZin</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+
+  <div class="d-flex justify-content-end">
+      <div class="p-2 bd-highlight">
+          <%= link_to 'Login', new_user_session_path, class: "btn btn-outline-light me-2" %>
+      </div>
+      <div class="p-2 bd-highlight">
+          <%= link_to 'Sign-Up', new_user_registration_path, class: "btn btn-outline-light me-2"%>
+      </div>
+      <div class="p-2 bd-highlight">
+          <%= link_to destroy_user_session_path, :method => :delete, class: "btn btn-outline-light me-2" do%>
+              Logout
+          <%end%>
+      </div>
+      
+    </div>
+    <div class="text-end" style="padding: 10px">
+      <% if current_user %> 
+        <h4> Now login: <%=current_user.email%> </h4> 
+      <% else %> 
+        <h3> Hello guest. Register to shop. </h3>
+      <%end%>
+    </div>
+  </div>
+
+<!-- =================================================================  -->
+<div class="d-flex flex-row bd-highlight mb-3">
+  <div class="p-2 bd-highlight">
+
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 240px; height: 100%;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+          <span class="fs-4">MagaZin</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+              <li> <%= link_to "Home", root_path %> </li>
+              <%if current_user %> 
+                <li> <%= link_to "Your orders", orders_path %> </li>
+              <%end%>
+        <hr>
+            <h4> Category: </h4>
+            <% Category.all.each do |category| %>
+              <li class="nav-item"><%= link_to category.title, category %></li>
+            <% end %>
+        <hr>
+    </div>
+  </div>
+      <%= yield %>
+</div>
+
+  </body>
+</html>
