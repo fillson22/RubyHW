@@ -17,10 +17,10 @@ class Cart < ApplicationRecord
   end
 
   def total_price
-    @sum = 0
-    line_items.each do |line_item|
-      @sum += line_item.price * line_item.quantity
-    end
-    @sum
+    line_items.to_a.sum { | line_item | line_item.quantity * line_item.price }
+  end
+
+  def total_quantity
+    line_items.to_a.sum(&:quantity)
   end
 end

@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
     user = current_user
     order = @order
     UserMailer.thanks_for_order(user, order).deliver_later
-    redirect_to orders_path
+    redirect_to orders_path, notice: 'Wait e-mail for a order check'
   end
 
   private

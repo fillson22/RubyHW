@@ -12,28 +12,40 @@
 
   <body>
 
-  <div class="d-flex justify-content-end">
-      <div class="p-2 bd-highlight">
-          <%= link_to 'Login', new_user_session_path, class: "btn btn-outline-light me-2" %>
-      </div>
-      <div class="p-2 bd-highlight">
-          <%= link_to 'Sign-Up', new_user_registration_path, class: "btn btn-outline-light me-2"%>
-      </div>
-      <div class="p-2 bd-highlight">
-          <%= link_to destroy_user_session_path, :method => :delete, class: "btn btn-outline-light me-2" do%>
-              Logout
-          <%end%>
-      </div>
-      
-    </div>
-    <div class="text-end" style="padding: 10px">
-      <% if current_user %> 
-        <h4> Now login: <%=current_user.email%> </h4> 
-      <% else %> 
-        <h3> Hello guest. Register to shop. </h3>
-      <%end%>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark", style="padding: 0.5rem">
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <div class="navbar-nav">
+      <%= link_to 'Login', new_user_session_path, class: "btn btn-outline-light me-2" %>
+      <%= link_to 'Sign-Up', new_user_registration_path, class: "btn btn-outline-light me-2"%>
+      <%= link_to destroy_user_session_path, :method => :delete, class: "btn btn-outline-light me-2" do%>
+          Logout          
+      <%end%>                                        
     </div>
   </div>
+
+  <span class="navbar-text", style="padding: 1rem; text-align:center; color:white">
+    <% if current_user %> 
+      Now login: <%=current_user.email%> 
+    <% else %> 
+      Guest
+    <%end%>
+  </span>
+        
+  <%= button_to cart_path, method: :get, class: "btn btn-primary" do %>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-cart" viewBox="0 0 16 16">
+      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+    </svg>
+    <span> <%= current_cart.total_quantity %> </span>
+  <% end %>
+</nav>
+
+  
+
+  
 
 <!-- =================================================================  -->
 <div class="d-flex flex-row bd-highlight mb-3">
