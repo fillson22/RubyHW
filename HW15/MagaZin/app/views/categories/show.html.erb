@@ -2,7 +2,11 @@
   <div class="row">
         <h1 class="text-center">Category: <%= @category.title %></h1>
   </div>
-  <div class="row d-flex justify-content-around">
-    <%= render partial: "products/products" %>
-  </div> 
+  <div id="products" class="row products">
+    <div class="row d-flex justify-content-around">
+      <%@products.each do |product|%>
+        <%= render partial: "products/products", locals: { product: product } %>
+      <%end%>
+    </div> 
+  </div>
 </div>

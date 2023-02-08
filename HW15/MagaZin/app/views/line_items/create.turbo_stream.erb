@@ -1,3 +1,11 @@
-<%= turbo_stream.update dom_id(@product, :total) do %>
-  <%= render "products/total" %>
+<%= turbo_stream.update "total_products" do %> 
+  <%= turbo_frame_tag "total_products" do %>
+    <%= current_cart.total_quantity %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update "product_#{product.id}" do %>
+  <%= turbo_frame_tag "product_#{product.id}" do %>
+    <%= render 'products/change_button' %>
+  <% end %>
 <% end %>
