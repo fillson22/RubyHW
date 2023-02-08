@@ -12,10 +12,11 @@ class LineItemsController < ApplicationController
     else
       current_cart.add_product(product)
     end
+    # @product = product
 
     respond_to do |format|
       format.html { redirect_to line_item_path(id: @line_item.id) }
-      format.turbo_stream # { render turbo_stream: turbo_stream.replace(current_cart.line_items) }
+      format.turbo_stream
     end
     # redirect_to cart_path, notice: "#{product.name} was successfully added to the cart"
   end

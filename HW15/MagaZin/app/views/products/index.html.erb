@@ -1,5 +1,10 @@
 <%= turbo_stream_from "products" %>
 
+Total: 
+<%= turbo_frame_tag dom_id(@product, :total) do %>
+  <%= render "products/total" %>
+<% end %>
+
 <div class="container-fluid">
   <div class="row">
         <h1 class="text-center">All products</h1>
