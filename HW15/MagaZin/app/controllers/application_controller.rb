@@ -11,7 +11,4 @@ class ApplicationController < ActionController::Base
     cart
   end
 
-  def cart_products_quantity
-    current_cart.line_item.map(&:quantity).sum
-  end
 end
