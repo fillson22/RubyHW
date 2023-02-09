@@ -7,10 +7,10 @@ class LineItemsController < ApplicationController
   def create
     product = Product.find(params[:product_id])
     if current_cart.line_items.find_by(product_id: product.id)
-      item = current_cart.line_items.find_by(product_id: product.id)
-      item.update(quantity: item.quantity += 1)
+      @line_item = current_cart.line_items.find_by(product_id: product.id)
+      @line_item.update(quantity: @line_item.quantity += 1)
     else
-      current_cart.add_product(product)
+      @line_item = current_cart.add_product(product)
     end
     # @product = product
 
@@ -24,7 +24,11 @@ class LineItemsController < ApplicationController
   def update
     params[:act] == 'increase' ? @line_item.update(quantity: @line_item.quantity + 1) : @line_item.update(quantity: @line_item.quantity - 1)
     @line_item.destroy if @line_item.quantity < 1
-    redirect_to cart_path
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+    # redirect_to cart_path
   end
 
   def destroy
