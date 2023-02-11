@@ -19,18 +19,22 @@
                 <% if line_item.product.image.attached? %>
                   <td><%= image_tag line_item.product.image.variant(:small)%></td>
                 <% else %>
-                  <p> No image </p>
+                  <%= image_tag '2.jpg', height: 100  %>
                 <% end %>
               <td> <%= line_item.product.name %> id <%= line_item.product.id %> </td>
 
               <td>
-                
+
                   <div class="d-md-flex">
-                    <%= button_to line_item_path(:id => line_item), params: { act: 'decrease' }, method: :put, class: 'btn btn-outline-danger btn-sm', style: 'padding-left:11px; padding-right:11px;' do %>
+                    <%= button_to line_item_path(:id => line_item), params: { act: 'decrease' }, 
+                      method: :put, class: 'btn btn-outline-danger btn-sm', style: 'padding-left:11px; padding-right:11px;',
+                      data: { turbo: false }  do %>
                       <span><b>-</b></span>
                     <% end %>
                     <p><%= line_item.quantity %></p>
-                    <%= button_to line_item_path(:id => line_item), params: { act: 'increase' }, method: :put , class: 'btn btn-outline-success btn-sm', style: 'padding-left:9px; padding-right:9px;' do %>
+                    <%= button_to line_item_path(:id => line_item), params: { act: 'increase' }, 
+                      method: :put , class: 'btn btn-outline-success btn-sm', style: 'padding-left:9px; padding-right:9px;',
+                      data: { turbo: false }  do %>
                       <span><b>+</b></span>
                     <% end %>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">

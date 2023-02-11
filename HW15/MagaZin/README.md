@@ -21,7 +21,7 @@ rails db:seed
 rails s
 
 If you want attached images to products then
-in admin mode seach images: /HW13/MagaZin/app/assets/images
+in admin mode seach images: /HW15/MagaZin/app/assets/images
 
 On browser:
 

@@ -1,18 +1,19 @@
       <div class="card" style="width: 10rem; padding: 1rem">
         <% if product.image.attached? %>
-        <%= image_tag product.image.variant(:norm)%>
+          <%= image_tag product.image.variant(:norm)%>
         <% else %>
-        <p> No image </p>
+          <%= image_tag "2.jpg", height: 100 %>
         <% end %>
         <div class="card-body">
           <h5 class="card-title"><%=link_to product.name, product%></h5>
           <p class="card-text">Price: <%=number_to_currency(product.price)%></p>
         </div>
         <div>
-
+          <% if current_user %>
             <%= turbo_frame_tag "product_#{product.id}" do %>
               <%= button_to 'Buy', line_items_path(product_id: product.id), class: "btn btn-primary" %>
             <% end %>
+          <% end %>
         </div>
       </div>
     

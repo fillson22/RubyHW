@@ -5,11 +5,16 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <div class="navbar-nav">
-      <%= link_to 'Login', new_user_session_path, class: "btn btn-outline-light me-2" %>
-      <%= link_to 'Sign-Up', new_user_registration_path, class: "btn btn-outline-light me-2"%>
-      <%= link_to destroy_user_session_path, :method => :delete, class: "btn btn-outline-light me-2" do%>
-          Logout          
-      <%end%>                                        
+      <% if current_user %>
+        <%= link_to 'Sign-Up', new_user_registration_path, class: "btn btn-outline-light me-2"%>
+        <%= link_to destroy_user_session_path, :method => :delete, class: "btn btn-outline-light me-2" do%>
+            Logout          
+        <% end %> 
+      <% else %>
+        <%= link_to 'Login', new_user_session_path, class: "btn btn-outline-light me-2" %>
+        <%= link_to 'Sign-Up', new_user_registration_path, class: "btn btn-outline-light me-2"%>
+      <% end %>
+                                               
     </div>
   </div>
 

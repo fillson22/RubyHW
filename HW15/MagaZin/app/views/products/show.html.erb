@@ -15,7 +15,13 @@
     <td><%=@product.name%></td>
     <td><%=@product.description%></td>
     <td><%=number_to_currency(@product.price)%></td>
-    <td><%=image_tag @product.image.variant(:norm)%></td>
+    <td>
+      <% if @product.image.attached? %>
+        <%= image_tag @product.image.variant(:norm)%>
+      <% else %>
+        <%= image_tag "2.jpg", height: 100 %>
+      <% end %>
+    </td>
     <td><%=@product.category.title%></td>
   </tr>
 </table>

@@ -5,20 +5,17 @@ class LineItemsController < ApplicationController
   before_action :set_line_item, only: %i[destroy update]
 
   def create
-    product = Product.find(params[:product_id])
-    if current_cart.line_items.find_by(product_id: product.id)
-      @line_item = current_cart.line_items.find_by(product_id: product.id)
-      @line_item.update(quantity: @line_item.quantity += 1)
-    else
-      @line_item = current_cart.add_product(product)
-    end
-    # @product = product
-
-    respond_to do |format|
-      format.html { redirect_to line_item_path(id: @line_item.id) }
-      format.turbo_stream
-    end
-    # redirect_to cart_path, notice: "#{product.name} was successfully added to the cart"
+      product = Product.find(params[:product_id])
+      if current_cart.line_items.find_by(product_id: product.id)
+        @line_item = current_cart.line_items.find_by(product_id: product.id)
+        @line_item.update(quantity: @line_item.quantity += 1)
+      else
+        @line_item = current_cart.add_product(product)
+      end
+      respond_to do |format|
+        format.html { redirect_to line_item_path(id: @line_item.id) }
+        format.turbo_stream
+      end
   end
 
   def update
@@ -26,9 +23,9 @@ class LineItemsController < ApplicationController
     @line_item.destroy if @line_item.quantity < 1
 
     respond_to do |format|
+      format.html { redirect_to cart_path }
       format.turbo_stream
     end
-    # redirect_to cart_path
   end
 
   def destroy
