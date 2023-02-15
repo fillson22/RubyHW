@@ -13,7 +13,13 @@
           </tr>
       <% @view_order.each do |line_item|%>
           <tr>
-            <th><%= image_tag line_item.product.image.variant(:norm)%></th>
+                <% if line_item.product.image.attached? %>
+                  <th><%= image_tag line_item.product.image.variant(:norm)%></th>
+                <% else %>
+                  <th><%= image_tag '2.jpg', height: 100  %></th>
+                <% end %>
+
+
             <th><%= line_item.product.name%></th>
             <th><%= line_item.quantity%></th>
             <th><%= number_to_currency line_item.price * line_item.quantity%></th>

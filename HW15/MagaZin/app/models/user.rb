@@ -25,4 +25,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :orders, dependent: :nullify
+  has_many :carts, dependent: :destroy
 end

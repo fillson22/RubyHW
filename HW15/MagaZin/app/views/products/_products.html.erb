@@ -9,11 +9,9 @@
           <p class="card-text">Price: <%=number_to_currency(product.price)%></p>
         </div>
         <div>
-          <% if current_user %>
             <%= turbo_frame_tag "product_#{product.id}" do %>
               <%= button_to 'Buy', line_items_path(product_id: product.id), class: "btn btn-primary" %>
             <% end %>
-          <% end %>
         </div>
       </div>
     

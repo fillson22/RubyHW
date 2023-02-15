@@ -19,9 +19,9 @@
                 <% if line_item.product.image.attached? %>
                   <td><%= image_tag line_item.product.image.variant(:small)%></td>
                 <% else %>
-                  <%= image_tag '2.jpg', height: 100  %>
+                  <td><%= image_tag '2.jpg', height: 100  %></td>
                 <% end %>
-              <td> <%= line_item.product.name %> id <%= line_item.product.id %> </td>
+              <td> <%= line_item.product.name %> </td>
 
               <td>
 
