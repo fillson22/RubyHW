@@ -27,7 +27,7 @@ class Cart < ApplicationRecord
   end
 
   def total_price
-    line_items.to_a.sum { | line_item | line_item.quantity * line_item.price }
+    line_items.to_a.sum { |line_item| line_item.quantity * line_item.price }
   end
 
   def total_quantity

@@ -23,7 +23,6 @@
 #  fk_rails_...  (product_id => products.id)
 #
 class LineItem < ApplicationRecord
-
   belongs_to :product
   belongs_to :cart, optional: true
 
